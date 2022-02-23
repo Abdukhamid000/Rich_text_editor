@@ -1,0 +1,43 @@
+.image-container {
+  margin: 20px auto;
+  text-align: center;
+  user-select: none;
+}
+
+.is-selected img {
+  box-shadow: 0 0 0 3px #b4d5ff;
+}
+
+.image {
+  display: block;
+  margin: 0 auto;
+  max-width: 80%;
+}
+
+.image-caption-input,
+.image-caption-read-mode {
+  display: block;
+  margin: 0 auto;
+  margin-top: 8px;
+}
+
+.image-caption-input {
+  width: 400px;
+  text-align: center;
+}
+
+.image-upload-placeholder {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  display: flex;
+  height: 300px;
+  justify-content: center;
+  margin: 0 auto;
+  width: 80%;
+}
+
+.image,
+.image-upload-placeholder {
+  border-radius: 2px;
+}

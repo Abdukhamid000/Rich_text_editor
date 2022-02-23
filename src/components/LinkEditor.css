@@ -1,0 +1,12 @@
+.link-editor {
+  display: none;
+  background: white;
+  position: absolute;
+  margin-top: 4px;
+  min-width: 300px;
+  z-index: 1;
+}
+
+.link-editor-btn {
+  margin-top: 16px;
+}
