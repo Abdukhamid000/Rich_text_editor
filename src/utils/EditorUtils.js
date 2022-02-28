@@ -46,15 +46,30 @@ export function toggleStyle(editor, style) {
   }
 }
 
-export function toggleBlockType(editor, blockType) {
+export function toggleBlockType(editor, blockType, align = "left") {
   const currentBlockType = getTextBlockStyle(editor);
-  const changeTo = currentBlockType === blockType ? "paragraph" : blockType;
+  blockType = blockType ? blockType : currentBlockType;
+  const changeTo = blockType;
 
   Transforms.setNodes(
     editor,
-    { type: changeTo },
+    { type: changeTo, align },
     { at: editor.selection, match: (n) => Editor.isBlock(editor, n) }
   );
+}
+
+export function toggleAlign(editor, blockType) {
+  console.log(editor, blockType);
+  // const currentBlockType = getTextBlockStyle(editor);
+  // const changeTo = currentBlockType === blockType ? "paragraph" : blockType;
+
+  // console.log({ Transforms });
+  // console.log({ changeTo });
+  // Transforms.setNodes(
+  //   editor,
+  //   { type: changeTo },
+  //   { at: editor.selection, match: (n) => Editor.isBlock(editor, n) }
+  // );
 }
 
 export function hasActiveLinkAtSelection(editor) {

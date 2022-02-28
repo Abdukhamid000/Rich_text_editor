@@ -5,11 +5,12 @@ import {
   getTextBlockStyle,
   hasActiveLinkAtSelection,
   toggleBlockType,
+  toggleAlign,
   toggleLinkAtSelection,
   toggleStyle,
 } from "../utils/EditorUtils";
 
-import Button from "react-bootstrap/Button";
+import { Button, ButtonGroup } from "react-bootstrap";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import { useCallback } from "react";
@@ -24,11 +25,11 @@ export default function Toolbar({ selection, previousSelection }) {
   const editor = useEditor();
 
   const onBlockTypeChange = useCallback(
-    (targetType) => {
+    (targetType, align) => {
       if (targetType === "multiple") {
         return;
       }
-      toggleBlockType(editor, targetType);
+      toggleBlockType(editor, targetType, align);
     },
     [editor]
   );
@@ -89,14 +90,34 @@ export default function Toolbar({ selection, previousSelection }) {
         onClick={() => HistoryEditor.undo(editor)}
         className="toolbar-btn"
       >
-        undo
+        <i class="bi bi-arrow-counterclockwise"></i>
       </Button>
       <Button
         onClick={() => HistoryEditor.redo(editor)}
         className="toolbar-btn"
       >
-        redo
+        <i class="bi bi-arrow-clockwise"></i>
       </Button>
+      <ButtonGroup className="me-2" aria-label="First group">
+        <Button
+          disabled={blockType == null || blockType === ""}
+          onClick={onBlockTypeChange.bind(this, undefined, "left")}
+        >
+          <i class="bi bi-text-left"></i>
+        </Button>
+        <Button
+          disabled={blockType == null || blockType === ""}
+          onClick={onBlockTypeChange.bind(this, undefined, "center")}
+        >
+          <i class="bi bi-text-center"></i>
+        </Button>
+        <Button
+          disabled={blockType == null || blockType === ""}
+          onClick={onBlockTypeChange.bind(this, undefined, "right")}
+        >
+          <i class="bi bi-text-right"></i>
+        </Button>
+      </ButtonGroup>
     </div>
   );
 }
@@ -143,6 +164,12 @@ function getIconForButton(style) {
     case "image":
       return "bi-file-image";
     case "link":
+      return "bi-link-45deg";
+    case "left":
+      return "bi-type-underline";
+    case "center":
+      return "bi-file-image";
+    case "right":
       return "bi-link-45deg";
     default:
       throw new Error(`Unhandled style in getIconForButton: ${style}`);
