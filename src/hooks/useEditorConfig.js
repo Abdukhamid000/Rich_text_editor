@@ -20,41 +20,68 @@ export default function useEditorConfig(editor) {
 
 function renderElement(props) {
   const { element, children, attributes } = props;
+  console.log({ element });
   switch (element.type) {
     case "image":
       return <Image {...props} />;
     case "paragraph":
       return (
-        <p {...attributes} content-editable={"true"}>
+        <p
+          style={{ textAlign: element.align ?? "left" }}
+          {...attributes}
+          content-editable={"true"}
+        >
           {children}
         </p>
       );
     case "h1":
       return (
-        <h1 {...attributes} content-editable={"true"}>
+        <h1
+          style={{ textAlign: element.align ?? "left" }}
+          {...attributes}
+          content-editable={"true"}
+        >
           {children}
         </h1>
       );
     case "h2":
       return (
-        <h2 {...attributes} content-editable={"true"}>
+        <h2
+          style={{ textAlign: element.align ?? "left" }}
+          {...attributes}
+          content-editable={"true"}
+        >
           {children}
         </h2>
       );
     case "h3":
       return (
-        <h3 {...attributes} content-editable={"true"}>
+        <h3
+          style={{ textAlign: element.align ?? "left" }}
+          {...attributes}
+          content-editable={"true"}
+        >
           {children}
         </h3>
       );
     case "h4":
       return (
-        <h4 {...attributes} content-editable={"true"}>
+        <h4
+          style={{ textAlign: element.align ?? "left" }}
+          {...attributes}
+          content-editable={"true"}
+        >
           {children}
         </h4>
       );
     case "link":
-      return <Link {...props} url={element.url} />;
+      return (
+        <Link
+          style={{ textAlign: element.align ?? "left" }}
+          {...props}
+          url={element.url}
+        />
+      );
     case "link-editor":
       return <LinkEditor {...props} />;
     default:

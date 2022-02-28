@@ -18,7 +18,6 @@ export default function useImageUploadHandler(editor, selection) {
       formData.append("photo", file);
 
       const id = uuidv4();
-
       Transforms.insertNodes(
         editor,
         {
@@ -55,7 +54,7 @@ export default function useImageUploadHandler(editor, selection) {
             );
           }, 3000);
         })
-        .catch((error) => {          
+        .catch((error) => {
           // Fire another Transform.setNodes to set an upload failed state on the image
         });
     },

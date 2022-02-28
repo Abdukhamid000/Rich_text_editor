@@ -51,8 +51,6 @@ export default function Editor({ document, onChange }) {
 
   return (
     <Slate editor={editor} value={document} onChange={onChangeLocal}>
-
-
       <Container className={"editor-container"}>
         <Row>
           <Col>
